@@ -1,0 +1,44 @@
+PHASE 7 EVALUATION RESULTS
+============================================================
+Train loss: 1.3806 | Train perplexity: 3.98
+Val loss:   1.5886 | Val perplexity:   4.90
+Val - Train gap: 0.2080
+Verdict: Train and val loss are close -- the model is generalizing reasonably, not just memorizing.
+============================================================
+
+PROMPT: 'ROMEO:'
+----------------------------------------
+ROMEO:
+What is fault the contrant more the princel of death, hume,
+As their open mut have of my fair many brother
+That so place he prepance him maiders: and and it the
+Distress the weep thou doest the of th
+
+PROMPT: 'JULIET:'
+----------------------------------------
+JULIET:
+But we do shall so it not was deliver,
+We'll my sons love, be so in mind myself my when
+As then be cullies he she; good in the many heaven
+To death of the gaund of him.
+
+CLIFFORD:
+If I do will crown 
+
+PROMPT: 'To be, or'
+----------------------------------------
+To be, or by their banish'd of
+As thus change it him is my fair, that was him
+we envious, how the least at my scarch curse
+Landy that I have heard of your leave my father
+Which in exposedition my new beauty,
+A
+
+PROMPT: 'The king'
+----------------------------------------
+The king of thy heart
+And thy was wounds and widow true grace in.
+And let no gover to the word, to this cheeking
+The will I did a word with the son,
+Let mether these way, and the wife I can can with
+To the ob

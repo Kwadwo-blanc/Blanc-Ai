@@ -27,7 +27,7 @@ This repo has two parts:
 8. Iteration / Fine-tuning
 9. Wrap-up / Demo
 
-We are currently on **Phase 7**.
+We are currently on **Phase 8**.
 
 ## Folder structure
 
@@ -325,8 +325,74 @@ Phase 6 is complete once everyone's tried a few prompts and shared results.
 
 No new installs needed -- just `torch`, already in `requirements.txt`.
 
-Once the team has shared eval results and made the real-dataset-vs-tune
-decision, we move to Phase 8 (iteration / fine-tuning).
+Phase 7 is complete -- results came back solid: train perplexity 3.98,
+val perplexity 4.90, a healthy 0.21 train/val gap (generalizing, not
+memorizing), and generated text hitting every mark expected at this
+scale (correct speaker format, real words, period-appropriate
+vocabulary). The team decided to move to Phase 8 with a real dataset.
+
+## Phase 8 instructions (iteration -- training on a real dataset)
+
+The team chose to swap Tiny Shakespeare for a real dataset: *The
+Communication Book* by Mikael Krogerus. Unlike Shakespeare, this is a
+**copyrighted, commercially published book** -- fine to train a small,
+non-distributed model on for this class project, but don't publish the
+raw text file, the trained checkpoint, or large chunks of generated
+output publicly, since that's a different thing from using it privately
+to learn how training works.
+
+1. Pull the latest from the repo (so you have the updated
+   `src/prepare_data.py`, `src/generate.py`, and `src/evaluate.py`).
+2. Get `data/raw/communication_book.txt` into your local `data/raw/`
+   folder (shared by whoever has it -- same idea as sharing a
+   checkpoint in earlier phases).
+3. Re-run the pipeline, pointing it at the new file:
+   ```
+   python src/prepare_data.py data/raw/communication_book.txt
+   python src/tokenizer.py
+   python src/model.py
+   ```
+   Stats so far: 106,110 characters, ~17,900 words, **vocab size 95**
+   (vs. Shakespeare's ~65 -- modern punctuation like curly quotes and
+   em-dashes adds more unique characters). Because the vocab size
+   changed, `model.py` will build a model with a different output size
+   than before -- **your old Shakespeare checkpoint will not work with
+   this dataset.** You're training a fresh model from scratch on the
+   new text, not continuing the old one.
+4. **Important -- this dataset is much smaller.** Tiny Shakespeare was
+   ~1,000,000 characters; this book is ~106,000 -- about a tenth the
+   size. With the same training settings (`MAX_ITERS = 3000`), the
+   model will pass over this text roughly 10x more times than it did
+   with Shakespeare, which raises the overfitting risk. When you train
+   (same Colab/Kaggle GPU process as Phase 5):
+   ```
+   python src/train.py
+   ```
+   watch the printed train/val loss every 250 steps more closely than
+   last time. If val loss starts climbing while train loss keeps
+   falling, that's overfitting -- consider stopping early (you don't
+   have to wait for all 3000 iterations; the checkpoint saves every
+   250 steps, so you can take an earlier one) or lowering `MAX_ITERS`
+   on a re-run.
+5. Run Phase 6/7 again on the new checkpoint to see how it did:
+   ```
+   python src/generate.py
+   python src/evaluate.py
+   ```
+   The fixed prompts have been updated to fit this book's subject
+   matter (`"Communication is"`, `"The best way to"`, etc. instead of
+   `"ROMEO:"`). Compare the new perplexity and train/val gap numbers
+   against the Shakespeare run (perplexity 3.98/4.90, gap 0.21) --
+   given the smaller dataset, don't be surprised if the gap is wider
+   this time.
+6. Share results in the team chat and decide: good enough for Phase 9
+   (wrap-up/demo), or does it need another iteration (smaller model,
+   fewer iterations, or more data)?
+
+No new installs needed -- just `torch`, already in `requirements.txt`.
+
+Once the team is happy with the real-dataset results, we move to
+Phase 9 (wrap-up / demo).
 
 ---
 
