@@ -1,44 +1,35 @@
 PHASE 7 EVALUATION RESULTS
 ============================================================
-Train loss: 1.3806 | Train perplexity: 3.98
-Val loss:   1.5886 | Val perplexity:   4.90
-Val - Train gap: 0.2080
-Verdict: Train and val loss are close -- the model is generalizing reasonably, not just memorizing.
+Train loss: 0.5685 | Train perplexity: 1.77
+Val loss:   2.8894 | Val perplexity:   17.98
+Val - Train gap: 2.3209
+Verdict: Val loss is notably higher than train loss -- likely overfitting. Consider: more data, fewer iterations, or a smaller model.
 ============================================================
 
-PROMPT: 'ROMEO:'
+PROMPT: 'Communication is'
 ----------------------------------------
-ROMEO:
-What is fault the contrant more the princel of death, hume,
-As their open mut have of my fair many brother
-That so place he prepance him maiders: and and it the
-Distress the weep thou doest the of th
+Communication is the researcher In 1960self Propaganda, history
+restanced Dissinctrued, asses how others.
+2. Inversal participants even them is understanding happen
+on has to desire not to example, but the impan the 
 
-PROMPT: 'JULIET:'
+PROMPT: 'The best way to'
 ----------------------------------------
-JULIET:
-But we do shall so it not was deliver,
-We'll my sons love, be so in mind myself my when
-As then be cullies he she; good in the many heaven
-To death of the gaund of him.
+The best way to white speak to ‘live’ and ‘stot
+marke sensistive in a communication there is atting which the happened.
+The media person we in the rough people will channel our ben minds us; we can eye
+pults of any 
 
-CLIFFORD:
-If I do will crown 
-
-PROMPT: 'To be, or'
+PROMPT: 'When you listen'
 ----------------------------------------
-To be, or by their banish'd of
-As thus change it him is my fair, that was him
-we envious, how the least at my scarch curse
-Landy that I have heard of your leave my father
-Which in exposedition my new beauty,
-A
+When you listening. But don’t also
+re thinking on the person behaviour to this behaviour and researched can be different
+presentations.
+The comes opinion is not always about the others are heat. This words, who we
+n
 
-PROMPT: 'The king'
+PROMPT: 'A good leader'
 ----------------------------------------
-The king of thy heart
-And thy was wounds and widow true grace in.
-And let no gover to the word, to this cheeking
-The will I did a word with the son,
-Let mether these way, and the wife I can can with
-To the ob
+A good leader, as insue the more ‘required’ and the
+other person to be ‘160m Listen’ The Danied the medium better Deecials Theory’s between effect
+of the two media and the media we having character. We know this b

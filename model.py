@@ -22,7 +22,10 @@ from torch.nn import functional as F
 # Defaults are small on purpose so this trains fast on a free GPU.
 # ---------------------------------------------------------------------
 class GPTConfig:
-    def __init__(self, vocab_size, block_size=256, n_embd=192, n_head=6, n_layer=6, dropout=0.1):
+    def __init__(self, vocab_size, block_size=256, n_embd=192, n_head=6, n_layer=6, dropout=0.2):
+        # dropout raised from 0.1 -> 0.2 after the Communication Book run
+        # showed overfitting (val perplexity 17.98 vs train 1.77, gap 2.32)
+        # -- small datasets need more regularization to avoid memorizing.
         self.vocab_size = vocab_size   # how many distinct tokens exist (from Phase 3)
         self.block_size = block_size   # max context length the model can look back at
         self.n_embd = n_embd           # embedding / hidden dimension

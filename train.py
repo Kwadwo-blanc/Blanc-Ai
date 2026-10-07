@@ -84,17 +84,29 @@ def main():
 
     os.makedirs(CHECKPOINT_DIR, exist_ok=True)
     start_time = time.time()
+    best_val_loss = float("inf")
 
     for step in range(MAX_ITERS + 1):
         if step % EVAL_INTERVAL == 0 or step == MAX_ITERS:
             losses = estimate_loss(model, train_data, val_data, config.block_size)
             elapsed = time.time() - start_time
+
+            # Only save when val loss improves -- otherwise a long training
+            # run just overwrites a good early checkpoint with a later,
+            # more-overfit one. This means checkpoints/model.pt always ends
+            # up holding the best-generalizing version seen during this run,
+            # not just whatever the final step happened to produce.
+            improved = losses["val"] < best_val_loss
+            if improved:
+                best_val_loss = losses["val"]
+                torch.save(
+                    {"model_state": model.state_dict(), "config": config.__dict__},
+                    CHECKPOINT_PATH,
+                )
+
+            marker = " <- best so far, saved" if improved else ""
             print(f"step {step:5d} | train loss {losses['train']:.4f} | "
-                  f"val loss {losses['val']:.4f} | {elapsed:.0f}s elapsed")
-            torch.save(
-                {"model_state": model.state_dict(), "config": config.__dict__},
-                CHECKPOINT_PATH,
-            )
+                  f"val loss {losses['val']:.4f} | {elapsed:.0f}s elapsed{marker}")
 
         xb, yb = get_batch(train_data, config.block_size, BATCH_SIZE)
         logits, loss = model(xb, yb)
@@ -102,7 +114,8 @@ def main():
         loss.backward()
         optimizer.step()
 
-    print(f"Training complete. Final checkpoint saved to {CHECKPOINT_PATH}")
+    print(f"Training complete. Best val loss: {best_val_loss:.4f}")
+    print(f"Best checkpoint saved to {CHECKPOINT_PATH}")
 
 
 if __name__ == "__main__":

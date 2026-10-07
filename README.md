@@ -370,10 +370,7 @@ to learn how training works.
    ```
    watch the printed train/val loss every 250 steps more closely than
    last time. If val loss starts climbing while train loss keeps
-   falling, that's overfitting -- consider stopping early (you don't
-   have to wait for all 3000 iterations; the checkpoint saves every
-   250 steps, so you can take an earlier one) or lowering `MAX_ITERS`
-   on a re-run.
+   falling, that's overfitting.
 5. Run Phase 6/7 again on the new checkpoint to see how it did:
    ```
    python src/generate.py
@@ -381,13 +378,37 @@ to learn how training works.
    ```
    The fixed prompts have been updated to fit this book's subject
    matter (`"Communication is"`, `"The best way to"`, etc. instead of
-   `"ROMEO:"`). Compare the new perplexity and train/val gap numbers
-   against the Shakespeare run (perplexity 3.98/4.90, gap 0.21) --
-   given the smaller dataset, don't be surprised if the gap is wider
-   this time.
+   `"ROMEO:"`).
 6. Share results in the team chat and decide: good enough for Phase 9
    (wrap-up/demo), or does it need another iteration (smaller model,
    fewer iterations, or more data)?
+
+### Update: first run overfit -- `train.py` and `model.py` fixed
+
+The first training run on this dataset came back overfit: train
+perplexity 1.77, val perplexity 17.98, a gap of 2.32 (vs. the healthy
+0.21 from the Shakespeare run) -- the model had essentially started
+memorizing the training text instead of learning generalizable
+patterns, which tracks with this dataset being ~10x smaller.
+
+This also exposed a real bug: `train.py` was saving a checkpoint every
+250 steps, but always to the same file path -- so the final saved
+checkpoint was whatever the *last* step produced (the most overfit
+point), with no way to recover an earlier, better one. That's fixed
+now: `train.py` only saves when val loss improves on the best seen so
+far, so `checkpoints/model.pt` always ends up holding the
+best-generalizing version from that run, regardless of how long
+training continues past that point. `model.py`'s dropout also went up
+from 0.1 to 0.2 for extra regularization on small datasets.
+
+**You'll need to retrain once more** with these fixes:
+```
+python src/train.py
+```
+on Colab/Kaggle as before. Then re-run `generate.py` and `evaluate.py`.
+Expect the gap to shrink substantially; it may not fully match
+Shakespeare's 0.21 given the dataset size difference, but it should be
+well below 2.32.
 
 No new installs needed -- just `torch`, already in `requirements.txt`.
 
