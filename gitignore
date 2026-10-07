@@ -8,4 +8,7 @@ data/processed/
 *.pt
 *.bin
 checkpoints/
+eval_results.txt
+data/medical_pdfs/
+data/medical/
 .DS_Store

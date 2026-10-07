@@ -3,3 +3,5 @@ numpy
 tiktoken
 datasets
 tqdm
+pdfplumber
+scikit-learn
