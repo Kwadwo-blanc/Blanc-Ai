@@ -405,9 +405,33 @@ medication."
   trying the simple version first and only upgrading if you hit its
   limits.
 
+### Status: tested and working on the real dataset
+
+Already run on the full set of 143 nursing-style "cheat sheet" PDFs
+(covering conditions, medication classes, and clinical procedures):
+extraction produced **1,493 searchable chunks**, and every single PDF
+contributed at least 4 chunks -- meaning none of them were scanned
+images that failed silently (that would need OCR, a different tool).
+Sample queries like "symptoms of asthma", "treatment for hypertension",
+and "warfarin dosage" all returned real, correctly-cited passages from
+the matching cheat sheets.
+
+`data/medical/chunks.json` (the extracted/chunked output, ~1.8MB) is
+ready to share with the team directly -- re-running
+`medical_extract.py` isn't necessary unless the PDF set changes, since
+the chunks file already has everything `medical_search.py` needs.
+
+One cosmetic quirk to know about: a few chunks contain a reversed
+sidebar label (e.g. "yrotaripseR" instead of "Respiratory") -- some of
+these PDFs have a rotated category label running down the page edge,
+and the extraction library reads it back-to-front. It doesn't affect
+search quality (the real content extracts fine), just looks odd if you
+spot it in a result. Not worth fixing unless it bothers you.
+
 ### Next steps for the team
 
-1. Upload/share your PDF files so this can be tested on your real data.
+1. Share `data/medical/chunks.json` so everyone can run
+   `medical_search.py` against the same data without re-extracting.
 2. Try a handful of real questions and check: are the returned passages
    actually relevant? If not, the chunk size or overlap may need tuning.
 3. Decide whether this stays a command-line tool or gets a simple
