@@ -1,35 +1,38 @@
 PHASE 7 EVALUATION RESULTS
 ============================================================
-Train loss: 0.5685 | Train perplexity: 1.77
-Val loss:   2.8894 | Val perplexity:   17.98
-Val - Train gap: 2.3209
+Train loss: 0.5683 | Train perplexity: 1.77
+Val loss:   2.8932 | Val perplexity:   18.05
+Val - Train gap: 2.3249
 Verdict: Val loss is notably higher than train loss -- likely overfitting. Consider: more data, fewer iterations, or a smaller model.
 ============================================================
 
 PROMPT: 'Communication is'
 ----------------------------------------
-Communication is the researcher In 1960self Propaganda, history
-restanced Dissinctrued, asses how others.
-2. Inversal participants even them is understanding happen
-on has to desire not to example, but the impan the 
+Communication is allow follow our or cultural of the empty.
+If we we are unsually of thinking to about the decision of the
+Marshager-ale respeak for maximstly between good and loverning.
+
+How are this person ho sayin
 
 PROMPT: 'The best way to'
 ----------------------------------------
-The best way to white speak to ‘live’ and ‘stot
-marke sensistive in a communication there is atting which the happened.
-The media person we in the rough people will channel our ben minds us; we can eye
-pults of any 
+The best way to
+Negotiative Theory. It’s a reason easy to spoken for mind us not understand in
+the sentences. We do not allow things we eaver in our conversation.
+For are impronmen to people who say one is male know
 
 PROMPT: 'When you listen'
 ----------------------------------------
-When you listening. But don’t also
-re thinking on the person behaviour to this behaviour and researched can be different
-presentations.
-The comes opinion is not always about the others are heat. This words, who we
-n
+When you listenings using simple to kindway.
+
+How to apologize put on this the sender of questions
+The Sophists and frame interpersonal communication
+Euathlus Lüchaist the British D. L’in’s Her Game Ore, standards a
 
 PROMPT: 'A good leader'
 ----------------------------------------
-A good leader, as insue the more ‘required’ and the
-other person to be ‘160m Listen’ The Danied the medium better Deecials Theory’s between effect
-of the two media and the media we having character. We know this b
+A good leaders, are in the consequence,
+the more important that should not negotiating and time. So because we
+have to were go, advantrise busic
+distown, sometimes, but or explained to an ask increlences:
+1. The p
